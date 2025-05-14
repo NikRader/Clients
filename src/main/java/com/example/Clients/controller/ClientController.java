@@ -16,7 +16,7 @@ import java.util.List;
 public class ClientController {
 
     @NonNull
-    private ClientService service = new ClientService();
+    private ClientService service;
 
     @GetMapping
     public List<Client> findAllStudents() {
