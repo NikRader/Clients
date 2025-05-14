@@ -3,10 +3,7 @@ package com.example.Clients.controller;
 import com.example.Clients.model.Client;
 import com.example.Clients.service.ClientService;
 import lombok.AllArgsConstructor;
-import lombok.NonNull;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,11 +12,31 @@ import java.util.List;
 @AllArgsConstructor 
 public class ClientController {
 
-    @NonNull
-    private ClientService service;
+    private final ClientService service;
 
     @GetMapping
     public List<Client> findAllStudents() {
+        //todo
         return service.findAllStudents();
+    }
+
+    @PostMapping("save_client")
+    public String saveClient(@RequestBody Client client){
+          service.saveClients(client);
+        return "Client was successfully added";
+    }
+    @GetMapping ("/{email}")
+    public Client findClientByEmail(@PathVariable String email){
+        return service.findByEmail(email);
+    }
+
+    @PutMapping("update_client")
+    public Client updateClient(@RequestBody Client client){
+        return service.updateClient(client);
+
+    }
+    @DeleteMapping("delete_client/{email}")
+    public void deleteClient(@PathVariable String email){
+        service.deleteClient(email);
     }
 }

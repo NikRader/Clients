@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor // внедрение Компонента через конструктор (который даже не нужно писать)
 public class InMemoryClientServiceImpl implements ClientService {
-    
+
     // Service использует Repository (2-ой уровень пользуется 3-им)
     private final InMemoryClientDAO repository;
 
